@@ -8,6 +8,8 @@ packages = [{include = "python_course"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+networkx = "^3.0"
+pygraphviz = "^1.10"
 
 
 [build-system]
