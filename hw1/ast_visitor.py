@@ -9,10 +9,13 @@ class AstVisitor(ast.NodeVisitor):
         self.__node_styles = dict()
 
     def draw_graph(self):
-        # TODO FIX
         agraph = nx.drawing.nx_agraph.to_agraph(nx.dfs_tree(self.__graph))
         for node in agraph.nodes():
-            print(node)
+            node_counter = int(node)
+            for k, v in self.__node_styles[node_counter].items():
+                node.attr[k] = v
+        agraph.layout('dot')
+        agraph.draw('artifacts/ast.png', format='png')
 
     def __get_node_name(self, node):
         return node.__class__.__name__
@@ -21,7 +24,8 @@ class AstVisitor(ast.NodeVisitor):
         self.__counter += 1
         node_counter = self.__counter
         self.__node_styles[node_counter] = {
-            'name': name,
+            'style': 'filled',
+            'label': name,
             'fillcolor': fillcolor,
             'shape': shape
         }
@@ -38,7 +42,7 @@ class AstVisitor(ast.NodeVisitor):
 
     def generic_visit(self, node):
         neighbours = []
-        for fieldname, value in ast.iter_fields(node):
+        for _, value in ast.iter_fields(node):
             if isinstance(value, ast.AST):
                 neighbor = self.visit(value)
                 if not isinstance(neighbor, list):
@@ -52,40 +56,51 @@ class AstVisitor(ast.NodeVisitor):
         return neighbours
 
     def visit_FunctionDef(self, node):
-        return self.__visit_node(node, self.__get_node_name(node))
+        return self.__visit_node(node, f'Function "{node.name}"', fillcolor='lightyellow')
 
     def visit_arguments(self, node):
-        return self.__visit_node(node, self.__get_node_name(node))
+        return self.__visit_node(node, self.__get_node_name(node), fillcolor='lightcoral', shape='rectangle')
 
     def visit_arg(self, node):
-        return self.__visit_node(node, self.__get_node_name(node))
+        return self.__visit_node(node, f'arg "{node.arg}"', fillcolor='lightcoral', shape='square')
 
     def visit_Name(self, node):
-        return self.__visit_node(node, self.__get_node_name(node))
+        return self.__visit_node(node, f'var "{node.id}"', fillcolor='springgreen', shape='diamond')
 
     def visit_Assign(self, node):
-        return self.__visit_node(node, self.__get_node_name(node))
+        return self.__visit_node(node, '=', fillcolor='darkorange', shape='square')
 
     def visit_List(self, node):
-        return self.__visit_node(node, self.__get_node_name(node))
+        return self.__visit_node(node, self.__get_node_name(node), fillcolor='palegreen', shape='polygon')
 
     def visit_Constant(self, node):
-        return self.__visit_node(node, self.__get_node_name(node))
+        return self.__visit_node(node, f'const {node.value}', fillcolor='gold', shape='cds')
 
     def visit_Expr(self, node):
-        return self.__visit_node(node, self.__get_node_name(node))
+        return self.__visit_node(node, self.__get_node_name(node), fillcolor='pink')
 
     def visit_Call(self, node):
-        return self.__visit_node(node, self.__get_node_name(node))
+        return self.__visit_node(node, self.__get_node_name(node), fillcolor='hotpink')
 
     def visit_BinOp(self, node):
-        return self.__visit_node(node, self.__get_node_name(node))
+        return self.__visit_node(node, self.__get_node_name(node), fillcolor='darkorange', shape='square')
 
     def visit_Add(self, node):
-        return self.__visit_node(node, self.__get_node_name(node))
+        return self.__visit_node(node, '+', fillcolor='darkorange', shape='square')
 
     def visit_Sub(self, node):
-        return self.__visit_node(node, self.__get_node_name(node))
+        return self.__visit_node(node, '-', fillcolor='darkorange', shape='square')
 
     def visit_Return(self, node):
-        return self.__visit_node(node, self.__get_node_name(node))
+        return self.__visit_node(node, self.__get_node_name(node), fillcolor='fuchsia', shape='larrow')
+    
+    def visit_For(self, node):
+        return self.__visit_node(node, f'{self.__get_node_name(node)} loop', fillcolor='skyblue', shape='ellipse')
+    
+    def visit_Attribute(self, node):
+        return self.__visit_node(node, f"attr: {node.attr}", fillcolor='violet', shape='rect')
+    
+    def visit_Subscript(self, node):
+        return self.__visit_node(node, '[ ]', fillcolor='cornflowerblue', shape='square')
+    
+
