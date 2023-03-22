@@ -93,14 +93,12 @@ class AstVisitor(ast.NodeVisitor):
 
     def visit_Return(self, node):
         return self.__visit_node(node, self.__get_node_name(node), fillcolor='fuchsia', shape='larrow')
-    
+
     def visit_For(self, node):
         return self.__visit_node(node, f'{self.__get_node_name(node)} loop', fillcolor='skyblue', shape='ellipse')
-    
+
     def visit_Attribute(self, node):
         return self.__visit_node(node, f"attr: {node.attr}", fillcolor='violet', shape='rect')
-    
+
     def visit_Subscript(self, node):
         return self.__visit_node(node, '[ ]', fillcolor='cornflowerblue', shape='square')
-    
-
