@@ -1,6 +1,6 @@
 import ast
 import networkx as nx
-
+import os
 
 class AstVisitor(ast.NodeVisitor):
     def __init__(self):
@@ -15,7 +15,10 @@ class AstVisitor(ast.NodeVisitor):
             for k, v in self.__node_styles[node_counter].items():
                 node.attr[k] = v
         agraph.layout('dot')
+        if not os.path.exists('artifacts'):
+            os.makedirs('artifacts')
         agraph.draw('artifacts/ast.png', format='png')
+        print('File successfully written to artifacts/ast.png')
 
     def __get_node_name(self, node):
         return node.__class__.__name__
