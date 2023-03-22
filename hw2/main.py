@@ -4,10 +4,11 @@ def create_tex_file(filename, content):
     begin_tex = '\\documentclass[12pt]{article} \n'
     begin_tex += '\\usepackage[utf8]{inputenc} \n'
     begin_tex += '\\usepackage[english]{babel} \n'
-    # TODO add graphix
+    begin_tex += '\\usepackage{graphicx} \n'
+    begin_tex += '\\graphicspath{ {./artifacts/} } \n'
     begin_tex += '\\begin{document} \n'
     end_tex = '\\end{document}'
-    with open(f'artifacts/{filename}.txt', 'w') as f:
+    with open(f'artifacts/{filename}.tex', 'w') as f:
         f.write(begin_tex)
         f.write(content)
         f.write(end_tex)
@@ -39,14 +40,16 @@ def easy(table, create_file=True):
     return latex
 
 
-def medium():
-    pass
+def medium(table, graphics_path):
+    latex = easy(table, create_file=False)
+    latex += '\\includegraphics[scale=0.1]{' + graphics_path + '} \n'
+    create_tex_file('medium_task', latex)
 
 
 def main():
     rows, columns = 3, 5
     table = [[str(i + j) for j in range(columns)] for i in range(rows)]
-    table.append([f'column {i}' for i in range(rows + columns)])
+    table.append([f'column {i}' for i in range(6)])
     print('-- table --')
     for i in range(len(table)):
         for j in range(len(table[i])):
@@ -57,6 +60,9 @@ def main():
     print('-- generated latex by easy --')
     print(latex)
     print('-- generated latex by easy --')
+    print('-- generating tex for medium task --')
+    medium(table, 'ast.png')
+    print('-- tex generated successfully --')
 
 
 if __name__ == "__main__":
