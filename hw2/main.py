@@ -42,6 +42,7 @@ def easy(table, create_file=True):
 
 def medium(table, graphics_path):
     latex = easy(table, create_file=False)
+    latex += '\n\n\n'
     latex += '\\includegraphics[scale=0.1]{' + graphics_path + '} \n'
     create_tex_file('medium_task', latex)
 
