@@ -1,4 +1,6 @@
 from functools import reduce
+from astconstructor import AstVisitor, fib
+import ast, inspect
 
 def create_tex_file(filename, content):
     begin_tex = '\\documentclass[12pt]{article} \n'
@@ -62,6 +64,10 @@ def main():
     print(latex)
     print('-- generated latex by easy --')
     print('-- generating tex for medium task --')
+    ast_obj = ast.parse(inspect.getsource(fib))
+    visitor = AstVisitor()
+    visitor.visit(ast_obj)
+    visitor.draw_graph()
     medium(table, 'ast.png')
     print('-- tex generated successfully --')
 
