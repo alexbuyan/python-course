@@ -67,7 +67,6 @@ class Matrix:
         repr += '\n])'
         return repr
 
-
 def easy_solution():
     np.random.seed(0)
     a = Matrix(np.random.randint(0, 10, (10, 10)))
@@ -77,12 +76,12 @@ def easy_solution():
     if not os.path.exists(artifacts_path):
         os.makedirs(artifacts_path)
 
-    with open("artifacts/easy/matrix+.txt", 'w') as f:
+    with open(f"{artifacts_path}/matrix+.txt", 'w') as f:
         f.write(str(a + b))
 
-    with open("artifacts/easy/matrix_mul.txt", 'w') as f:
+    with open(f"{artifacts_path}/matrix_mul.txt", 'w') as f:
         f.write(str(a * b))
 
-    with open("artifacts/easy/matrix@.txt", 'w') as f:
+    with open(f"{artifacts_path}/matrix@.txt", 'w') as f:
         f.write(str(a @ b))
 
