@@ -1,0 +1,54 @@
+-- Threading results --
+n_jobs=1 calc_time=0.45783543586730957 
+n_jobs=2 calc_time=0.574932336807251 
+n_jobs=3 calc_time=0.27357935905456543 
+n_jobs=4 calc_time=0.24462366104125977 
+n_jobs=5 calc_time=0.24277782440185547 
+n_jobs=6 calc_time=0.23574161529541016 
+n_jobs=7 calc_time=0.269150972366333 
+n_jobs=8 calc_time=0.25382447242736816 
+n_jobs=9 calc_time=0.34368348121643066 
+n_jobs=10 calc_time=0.28589463233947754 
+n_jobs=11 calc_time=0.3545079231262207 
+n_jobs=12 calc_time=0.3050806522369385 
+n_jobs=13 calc_time=0.2870464324951172 
+n_jobs=14 calc_time=0.2984762191772461 
+n_jobs=15 calc_time=0.32269740104675293 
+n_jobs=16 calc_time=0.3804783821105957 
+n_jobs=17 calc_time=0.28434228897094727 
+n_jobs=18 calc_time=0.29855895042419434 
+n_jobs=19 calc_time=0.3942124843597412 
+n_jobs=20 calc_time=0.3748130798339844 
+n_jobs=21 calc_time=0.25591301918029785 
+n_jobs=22 calc_time=0.34049153327941895 
+n_jobs=23 calc_time=0.26662182807922363 
+n_jobs=24 calc_time=0.29923558235168457 
+Integration result == 1.000000785410528
+
+
+-- Multiprocessing results --
+n_jobs=1 calc_time=0.5822291374206543 
+n_jobs=2 calc_time=0.4637775421142578 
+n_jobs=3 calc_time=0.39194273948669434 
+n_jobs=4 calc_time=0.44278383255004883 
+n_jobs=5 calc_time=0.4255375862121582 
+n_jobs=6 calc_time=0.4644889831542969 
+n_jobs=7 calc_time=0.4636082649230957 
+n_jobs=8 calc_time=0.5054666996002197 
+n_jobs=9 calc_time=0.560028076171875 
+n_jobs=10 calc_time=0.5745503902435303 
+n_jobs=11 calc_time=0.6228249073028564 
+n_jobs=12 calc_time=0.626150369644165 
+n_jobs=13 calc_time=0.6847081184387207 
+n_jobs=14 calc_time=0.8395826816558838 
+n_jobs=15 calc_time=0.7808759212493896 
+n_jobs=16 calc_time=0.8387689590454102 
+n_jobs=17 calc_time=0.9000544548034668 
+n_jobs=18 calc_time=0.9726388454437256 
+n_jobs=19 calc_time=0.9780757427215576 
+n_jobs=20 calc_time=1.041916847229004 
+n_jobs=21 calc_time=1.0732629299163818 
+n_jobs=22 calc_time=1.2240848541259766 
+n_jobs=23 calc_time=1.182687759399414 
+n_jobs=24 calc_time=1.2156500816345215 
+Integration result == 1.000000785410528
